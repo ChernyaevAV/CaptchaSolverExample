@@ -39,4 +39,5 @@ def get_text_from_audio():
             print(recognized_text)
             return recognized_text
 
+
 get_text_from_audio()

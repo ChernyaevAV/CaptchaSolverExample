@@ -30,7 +30,12 @@ https://youtu.be/d7N2XHIkGbE
 
 ### Запуск
 
-Запустите image_captcha.py 
+Запустите recaptcha_enterprise_steam.py
+
+или
+
+Запустите recaptcha_v2.py
+
 
 
 

@@ -18,7 +18,8 @@ class CustomRecaptchaSolver(RecaptchaSolver):
         """
         Click the "I'm not a robot" checkbox and then solve a reCAPTCHA v2 challenge.
 
-        Call this method directly on web pages with an "I'm not a robot" checkbox. See <https://developers.google.com/recaptcha/docs/versions> for details of how this works.
+        Call this method directly on web pages with an "I'm not a robot" checkbox.
+        See <https://developers.google.com/recaptcha/docs/versions> for details of how this works.
 
         :param iframe: web element for inline frame of reCAPTCHA to solve
         :param by_selector: By selector to use to find the iframe, if ``iframe`` is a string
@@ -60,7 +61,8 @@ class CustomRecaptchaSolver(RecaptchaSolver):
         """
         Solve a reCAPTCHA v2 challenge that has already appeared.
 
-        Call this method directly on web pages with the "invisible reCAPTCHA" badge. See <https://developers.google.com/recaptcha/docs/versions> for details of how this works.
+        Call this method directly on web pages with the "invisible reCAPTCHA" badge.
+        See <https://developers.google.com/recaptcha/docs/versions> for details of how this works.
 
         :param iframe: web element for inline frame of reCAPTCHA to solve
         :raises selenium.common.exceptions.TimeoutException: if a timeout occurred while waiting
@@ -117,6 +119,7 @@ class CustomRecaptchaSolver(RecaptchaSolver):
 
         self._driver.switch_to.parent_frame()
 
+
 class RegisterSteam:
     def __init__(self):
         self.driver = ChromeBrowser().get_driver()
@@ -124,13 +127,16 @@ class RegisterSteam:
     def _get_url(self):
         self.driver.get("https://store.steampowered.com/join")
 
-
     def _solve_captcha(self):
-        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.XPATH, '//iframe[@title="reCAPTCHA"]')))
-        recaptcha_iframe = self.driver.find_element(By.XPATH, '//iframe[@title="reCAPTCHA"]')
+        WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located(
+                (By.XPATH, '//iframe[@title="reCAPTCHA"]')
+            ))
+        recaptcha_iframe = self.driver.find_element(
+            By.XPATH, '//iframe[@title="reCAPTCHA"]'
+        )
         solver = CustomRecaptchaSolver(driver=self.driver)
         solver.click_recaptcha_v2(iframe=recaptcha_iframe)
-
 
     def _insert_data(self):
         self.driver.find_element(By.CSS_SELECTOR, "#i_agree_check").click()
@@ -146,6 +152,7 @@ class RegisterSteam:
 
 
 if __name__ == '__main__':
+
     try:
         RegisterSteam().new_register()
         time.sleep(10)
